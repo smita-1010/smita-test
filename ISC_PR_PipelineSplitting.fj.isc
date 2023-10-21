@@ -1,0 +1,29 @@
+//  PROJECT     : Sam
+//
+//  MODULE      : ISC_PR_PipelineSplitting.aufj.isc
+//
+//  DESCRIPTION: This custom IScript will sets the output stream for
+//               suspended CDRs.
+//
+// ******************************************************************************
+//   Document History
+//
+//   DATE   *  CHANGES                                      *  Author
+//  --------*-----------------------------------------------*---------------
+//  01.09.04* Initial creation. Copied from NZ iScript.     * Prakash Kumar
+//  --------*-----------------------------------------------*---------------
+//
+
+Long index;
+
+function onDetailEdr
+{
+  if ( edrString(DETAIL.ASS_SUSPENSE_EXT.PIPELINE_NAME, 0) == "VF_P1_SPLITTER" )
+  {
+    edrSetStream ("OUT_PRERECYCLE_SPLITTER_P1");
+  }
+  else if ( edrString(DETAIL.ASS_SUSPENSE_EXT.PIPELINE_NAME, 0) == "VF_P3_POSTRT_RATER" )
+  {
+    edrSetStream ("OUT_PRERECYCLE_POSTRT_P3");
+  }
+}
